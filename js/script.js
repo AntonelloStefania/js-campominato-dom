@@ -27,14 +27,12 @@ function randomNumber(min,max){
      }
      return bombArray;
    
-    
-  
 }
 
 
 //scelta della difficoltà
 const difficulty = document.getElementById('difficulty');
-let difficulty_value;
+let difficulty_value= 100;
 
 //evento scelta difficoltà
 difficulty.addEventListener('change', function(){
@@ -49,6 +47,11 @@ difficulty.addEventListener('change', function(){
         const grid= document.getElementById('grid');
         grid.innerHTML="";
         
+        //messaggio fine partita
+        let message = document.getElementById('result');
+        message.classList.add('none')
+      
+        //array bombe vuoto
         let emptyBombArray= fullArrayBomb(difficulty_value)
         console.log(emptyBombArray)
        
@@ -58,7 +61,6 @@ difficulty.addEventListener('change', function(){
         // numero di caselle non contenenti bombe
         let rightClick = 0
 
-       let message = document.getElementById('result')
 
         for(let i=1; i<= difficulty_value; i++){
             let square = squareGen(i);
@@ -88,9 +90,13 @@ difficulty.addEventListener('change', function(){
                         gameOver= true;}
                     } else{
                         this.classList.toggle('bomb');
+                        message.classList.remove('none');
+                        message.classList.add('block');
+                        message.innerText= `Mi dispiace, hai perso, il tuo punteggio è ${rightClick}`;
                         gameOver= true;
                     }
                 }
+                
             })
             
         }
