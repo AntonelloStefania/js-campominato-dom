@@ -16,7 +16,8 @@ function randomNumber(min,max){
     let rNumber= null;
     let bombArray;
     function fullArrayBomb(max){
-    bombArray=[]
+    bombArray =[]
+    
 
      while (bombArray.length <16){
          rNumber = randomNumber(1,max);
@@ -52,8 +53,8 @@ difficulty.addEventListener('change', function(){
         message.classList.add('none')
       
         //array bombe vuoto
-        let emptyBombArray= fullArrayBomb(difficulty_value)
-        console.log(emptyBombArray)
+        let bombArray= fullArrayBomb(difficulty_value)
+        console.log(bombArray)
        
         //variabile che setta il gameOver
         let gameOver= false
@@ -75,17 +76,20 @@ difficulty.addEventListener('change', function(){
             }
 
             //evento click cella
+            let clickedSquares= [];
+            
            
             square.addEventListener('click', function(){
 
-                if(!gameOver){
+                if(!gameOver && !clickedSquares.includes(this)){
                     
                     if(!bombArray.includes(parseInt(this.innerText))){
                         this.classList.toggle('clicked');
                         rightClick++;
+                        clickedSquares.push(this)
                         if(rightClick === difficulty_value - 16){
                         message.classList.remove('none');
-                        message.classList.add('block')
+                        message.classList.add('block');
                         message.innerText= 'Complimenti, hai vinto!!';
                         gameOver= true;}
                     } else{
@@ -94,11 +98,15 @@ difficulty.addEventListener('change', function(){
                         message.classList.add('block');
                         message.innerText= `Mi dispiace, hai perso, il tuo punteggio è ${rightClick}`;
                         gameOver= true;
+                        
+                        //controllo caselle presenti in bombarray per scoprire tutte le bombe alla sconfitta
+                        bombArray.forEach((bombNumber) => {
+                            let bombSquare = document.querySelector(`.square:nth-child(${bombNumber})`);
+                            bombSquare.classList.add('bomb');
+                        });
                     }
                 }
-                
             })
-            
         }
         grid.classList.remove('none');
         grid.classList.add('appear');
