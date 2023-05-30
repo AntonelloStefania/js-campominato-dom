@@ -15,6 +15,7 @@ function randomNumber(min,max){
 //funzione per riempire l'array bombe
     let rNumber= null;
     let bombArray;
+   
     function fullArrayBomb(max){
     bombArray =[]
     
@@ -98,11 +99,10 @@ const btn= document.getElementById('btn').addEventListener('click',function(){
                     //ciclo for per far scoprire tutte le bombe alla sconfitta
                     let bombsCells= document.getElementById('grid').children
                     for(let i=0; i< bombsCells.length; i++){
-                        let  number = parseInt(bombsCells[i].innerText);
-                        console.log(number)
+                        let number = parseInt(bombsCells[i].innerText);
 
                         if(bombArray.includes(number)){
-                            bombsCells[i].classList.add('bomb')
+                           bombsCells[i].classList.add('bomb')
                         }
                     }
                     
