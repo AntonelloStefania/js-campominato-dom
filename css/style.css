@@ -10,7 +10,6 @@ body{
     background-color: #515760;
     font-family: 'Comfortaa', cursive;
     font-family: 'Inconsolata', monospace;
-   
 }
 
 .container{
@@ -42,6 +41,7 @@ header{
 .block{
     display: block;
 }
+
 .appear{
     display: flex;
 }
@@ -51,7 +51,6 @@ header{
 }
 
 .square{
-   
     border: 1px solid #564444;
     display: flex;
     justify-content: center;
@@ -59,7 +58,6 @@ header{
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
-
 }
 
 .easy{
@@ -117,7 +115,6 @@ header{
     box-shadow: 0px 0px 35px 12px black;
     color: white;
     font-weight: bold;
-    
 }
 
 #btn{
